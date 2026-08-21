@@ -1,10 +1,10 @@
 # -*- mode: python ; coding: utf-8 -*-
 import sys
 from PyInstaller.building.build_main import Analysis, PYZ, EXE, COLLECT, BUNDLE
-
+sys.modules["FixTk"] = None
 import napari
 
-sys.modules["FixTk"] = None
+
 
 
 NAME = "napari-app"
@@ -54,9 +54,13 @@ def get_version():
     )
 
 
+
 a = Analysis(
     ["main.py"],
     hookspath=["hooks"],
+    hiddenimports=[],
+    datas=[],
+    binaries=[],
     excludes=[
         "FixTk",
         "tcl",
